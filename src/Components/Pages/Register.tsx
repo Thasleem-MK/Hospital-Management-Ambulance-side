@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Ambulance, Phone, Mail, MapPin, Lock, Navigation } from "lucide-react";
 import OTPVerification from "../OtpVarification";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ApiClient } from "../Axios";
 
 const AmbulanceServiceForm: React.FC = () => {
@@ -15,9 +15,9 @@ const AmbulanceServiceForm: React.FC = () => {
     password: "",
     vehicleType: "",
   });
-  const [showPopup, setShowPopup] = useState(false);
   const [showOtp, setShowOTP] = useState(false);
-  const [otp, setOTP] = useState("123456");
+  const [otp, setOTP] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -45,12 +45,8 @@ const AmbulanceServiceForm: React.FC = () => {
 
   const handleOTPVerification = async (value: string) => {
     if (value === otp) {
-      console.log(value, otp);
       await ApiClient.post("/api/ambulance/register", { ...formData })
-        .then((result) => {
-          console.log(result);
-          setShowPopup(true);
-          setTimeout(() => setShowPopup(false), 2000);
+        .then(() => {
           setShowOTP(false);
           setFormData({
             address: "",
@@ -62,6 +58,7 @@ const AmbulanceServiceForm: React.FC = () => {
             serviceName: "",
             vehicleType: "",
           });
+          navigate("/login");
         })
         .catch((err) => alert(err?.respose?.data?.message));
     }
@@ -314,18 +311,6 @@ const AmbulanceServiceForm: React.FC = () => {
           </p>
         </div>
       </div>
-      {showPopup && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 border border-green-600">
-          <div className="bg-white rounded-lg p-8 shadow-xl">
-            <div className="text-2xl font-bold text-green-600 mb-4">
-              Registration Successful!
-            </div>
-            <p className="text-gray-600">
-              Thank you for registering your ambulance service.
-            </p>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
