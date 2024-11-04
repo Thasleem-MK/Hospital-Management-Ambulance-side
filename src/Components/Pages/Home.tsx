@@ -14,58 +14,23 @@ const HomePage: React.FC = () => {
             <div className="flex-shrink-0 flex items-center">
               <span className="text-2xl font-bold text-green-600">Hosta</span>
             </div>
-            <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-              <Link
-                to="/login"
-                className="text-gray-500 hover:text-green-600 inline-flex items-center px-1 pt-1 text-sm font-medium"
-              >
-                Sign In
-              </Link>
-              <Link
-                to="/registration"
-                className="text-gray-500 hover:text-green-600 inline-flex items-center px-1 pt-1 text-sm font-medium"
-              >
-                Sign Up
-              </Link>
-            </div>
-            <div className="-mr-2 flex items-center sm:hidden">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500"
-              >
-                <span className="sr-only">Open main menu</span>
-                {isMenuOpen ? (
-                  <X className="block h-6 w-6" aria-hidden="true" />
-                ) : (
-                  <Menu className="block h-6 w-6" aria-hidden="true" />
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {isMenuOpen && (
-          <div className="sm:hidden">
-            <div className="pt-2 pb-3 space-y-1">
+            <div className="flex items-center">
               <Link
                 to="/signin"
-                className="text-gray-500 hover:text-green-600 block px-3 py-2 text-base font-medium"
-                onClick={() => setIsMenuOpen(false)}
+                className="text-gray-500 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium"
               >
                 Sign In
               </Link>
               <Link
                 to="/signup"
-                className="text-gray-500 hover:text-green-600 block px-3 py-2 text-base font-medium"
-                onClick={() => setIsMenuOpen(false)}
+                className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
               >
                 Sign Up
               </Link>
             </div>
           </div>
-        )}
+        </div>
       </nav>
-
       <div className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold text-center text-green-800 mb-8">
