@@ -14,13 +14,13 @@ const HomePage: React.FC = () => {
             </div>
             <div className="flex items-center">
               <Link
-                to="/signin"
+                to="/login"
                 className="text-gray-500 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium"
               >
                 Sign In
               </Link>
               <Link
-                to="/signup"
+                to="/registration"
                 className="ml-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
               >
                 Sign Up
