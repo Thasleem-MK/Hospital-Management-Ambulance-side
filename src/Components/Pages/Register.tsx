@@ -246,7 +246,7 @@ const AmbulanceServiceForm: React.FC = () => {
                 />
               </div>
             </div>
-            <div className="mb-5">
+            <div>
               <label
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700 mb-1"
@@ -269,16 +269,15 @@ const AmbulanceServiceForm: React.FC = () => {
                 />
               </div>
             </div>
-            <div className="mb-5">
+            <div>
               <label
                 htmlFor="vehicleType"
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-gray-700 mb-3 mt-2"
               >
                 Vehicle Type
               </label>
               <div className="relative rounded-md shadow-sm">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                </div>
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"></div>
                 <select
                   id="vehicleType"
                   name="vehicleType"
