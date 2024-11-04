@@ -9,8 +9,11 @@ import {
   LogOut,
   Trash2,
 } from "lucide-react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Redux/Store";
 
 interface ProfileData {
+  _id?: string;
   serviceName: string;
   address: string;
   latitude: string;
@@ -23,14 +26,24 @@ interface ProfileData {
 const ProfilePage: React.FC = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const {
+    address,
+    email,
+    latitude,
+    longitude,
+    phone,
+    serviceName,
+    vehicleType,
+  } = useSelector((state: RootState) => state.Ambulance);
+
   const [profileData, setProfileData] = useState<ProfileData>({
-    serviceName: "Example Ambulance Service",
-    address: "123 Main St, City, Country",
-    latitude: "40.7128",
-    longitude: "-74.0060",
-    phone: "+1 234 567 8900",
-    email: "example@ambulance.com",
-    vehicleType: "Basic Service",
+    serviceName: serviceName,
+    address: address,
+    latitude: latitude,
+    longitude: longitude,
+    phone: phone,
+    email: email,
+    vehicleType: vehicleType,
   });
 
   const handleChange = (

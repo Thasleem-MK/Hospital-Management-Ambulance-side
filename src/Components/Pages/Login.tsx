@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Mail, Lock, AlertCircle } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { ApiClient } from "../Axios";
+import { useDispatch } from "react-redux";
+import { setAmbulance } from "../../Redux/AmbulanceSlice";
 
 const Login: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +12,7 @@ const Login: React.FC = () => {
   });
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -19,12 +22,17 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError("");
-    await ApiClient.post("/api/ambulance/login", {
-      email: formData.email,
-      password: formData.password,
-    })
+    await ApiClient.post(
+      "/api/ambulance/login",
+      {
+        email: formData.email,
+        password: formData.password,
+      },
+      { withCredentials: true }
+    )
       .then((result) => {
-        console.log(result);
+        dispatch(setAmbulance(result.data.data));
+        localStorage.setItem("accessToken", result.data.token);
         navigate("/profile");
       })
       .catch((err) => {
