@@ -1,10 +1,8 @@
-import React, { useState } from "react";
-import { Award, Heart, Zap, Shield, Menu, X } from "lucide-react";
+import { Award, Heart, Zap, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 import DriverInstructions from "../DriverInstruction";
 
 const HomePage: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100">
