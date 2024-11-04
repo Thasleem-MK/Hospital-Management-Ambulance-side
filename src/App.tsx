@@ -1,17 +1,19 @@
 import { Route, Routes } from "react-router-dom";
-import AmbulanceRegistration from "./Components/Pages/Register";
+import Registration from "./Components/Pages/Register";
 import Login from "./Components/Pages/Login";
-import Home from "./Components/Pages/Home";
-import Settings from "./Components/Pages/Settings";
+import Profile from "./Components/Pages/Profile";
+import HomePage from "./Components/Pages/Home";
+import ForgotPassword from "./Components/Pages/ForgotPassword";
 
 function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/registration" element={<AmbulanceRegistration />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/settings" element={<Settings />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </div>
   );
