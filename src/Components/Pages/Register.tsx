@@ -39,7 +39,6 @@ const AmbulanceServiceForm: React.FC = () => {
     })
       .then(() => {
         setShowOTP(true);
-        alert("Otp sent to your email address");
       })
       .catch((err) => console.log(err));
   };
@@ -64,7 +63,7 @@ const AmbulanceServiceForm: React.FC = () => {
             vehicleType: "",
           });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => alert(err?.respose?.data?.message));
     }
   };
 
