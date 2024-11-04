@@ -80,30 +80,6 @@ const AmbulanceServiceForm: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-green-100 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-32 h-32 transform translate-x-8 -translate-y-8">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="0.5"
-            className="w-full h-full text-green-200"
-          >
-            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12s4.477 10 10 10 10-4.477 10-10z" />
-          </svg>
-        </div>
-        <div className="absolute bottom-0 left-0 w-32 h-32 transform -translate-x-8 translate-y-8">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="0.5"
-            className="w-full h-full text-green-200"
-          >
-            <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12s4.477 10 10 10 10-4.477 10-10z" />
-          </svg>
-        </div>
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-green-800">
             Ambulance Service Registration
@@ -260,7 +236,6 @@ const AmbulanceServiceForm: React.FC = () => {
               </label>
               <div className="relative rounded-md shadow-sm">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Ambulance className="h-5 w-5 text-green-500" />
                 </div>
                 <select
                   id="vehicleType"
