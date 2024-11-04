@@ -283,9 +283,9 @@ const AmbulanceServiceForm: React.FC = () => {
                   onChange={handleChange}
                 >
                   <option value="">Select Type of Vehicle</option>
-                  <option value="basic">Basic Service</option>
-                  <option value="D-level">D-Level Service</option>
-                  <option value="E-type">E-Type Service</option>
+                  <option value="Basic Service">Basic Service</option>
+                  <option value="D-Level Service">D-Level Service</option>
+                  <option value="E-Type Service">E-Type Service</option>
                 </select>
               </div>
             </div>

@@ -17,9 +17,9 @@ function App() {
       await ApiClient.get("/api/ambulance", {
         withCredentials: true,
       })
-        .then((result) => {
-          console.log(result.data.data);
-          dispatch(setAmbulance(result.data.data));
+        .then(async (result) => {
+          const data = await result.data.data;
+          dispatch(setAmbulance({ ...data }));
         })
         .catch((err) => console.log(err));
     };

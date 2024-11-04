@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Ambulance,
   Phone,
@@ -45,6 +45,18 @@ const ProfilePage: React.FC = () => {
     email: email,
     vehicleType: vehicleType,
   });
+  
+  useEffect(() => {
+    setProfileData({
+      serviceName,
+      address,
+      latitude,
+      longitude,
+      phone,
+      email,
+      vehicleType,
+    });
+  }, [serviceName, address, latitude, longitude, phone, email, vehicleType]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
