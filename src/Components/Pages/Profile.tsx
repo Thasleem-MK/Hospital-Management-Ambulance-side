@@ -87,8 +87,7 @@ const ProfilePage: React.FC = () => {
 
   const handleLogout = async () => {
     await ApiClient.get("/api/logout", { withCredentials: true })
-      .then((result) => {
-        console.log(result);
+      .then(() => {
         localStorage.removeItem("accessToken");
         window.location.href = "/";
       })
@@ -96,10 +95,15 @@ const ProfilePage: React.FC = () => {
     console.log("Logging out...");
   };
 
-  const handleDelete = () => {
-    // Implement account deletion logic here
+  const handleDelete = async () => {
+    await ApiClient.delete(`/api/ambulance/${_id}`)
+      .then(() => {
+        localStorage.removeItem("accessToken");
+        window.location.href = "/";
+        setShowDeleteConfirm(false);
+      })
+      .catch((err) => console.log(err));
     console.log("Deleting account...");
-    setShowDeleteConfirm(false);
   };
 
   return (
