@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { ApiClient } from "./Components/Axios";
 import { useDispatch } from "react-redux";
 import { setAmbulance } from "./Redux/AmbulanceSlice";
+import { HomeProtector, Protector } from "./Components/Protector";
 
 function App() {
   const dispatch = useDispatch();
@@ -29,11 +30,25 @@ function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/"
+          element={
+            <HomeProtector>
+              <HomePage />
+            </HomeProtector>
+          }
+        />
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/profile"
+          element={
+            <Protector>
+              <Profile />
+            </Protector>
+          }
+        />
       </Routes>
     </div>
   );
