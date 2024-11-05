@@ -9,8 +9,10 @@ import {
   LogOut,
   Trash2,
 } from "lucide-react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/Store";
+import { ApiClient } from "../Axios";
+import { setAmbulance } from "../../Redux/AmbulanceSlice";
 
 interface ProfileData {
   _id?: string;
@@ -27,6 +29,7 @@ const ProfilePage: React.FC = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const {
+    _id,
     address,
     email,
     latitude,
@@ -45,7 +48,7 @@ const ProfilePage: React.FC = () => {
     email: email,
     vehicleType: vehicleType,
   });
-  
+
   useEffect(() => {
     setProfileData({
       serviceName,
@@ -58,6 +61,8 @@ const ProfilePage: React.FC = () => {
     });
   }, [serviceName, address, latitude, longitude, phone, email, vehicleType]);
 
+  const dispatch = useDispatch();
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
@@ -65,19 +70,29 @@ const ProfilePage: React.FC = () => {
     setProfileData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!isEditing) {
       setIsEditing(true);
       return;
     }
-    setIsEditing(false);
-    // Here you would typically send the updated data to your backend
-    console.log("Profile updated:", profileData);
+
+    await ApiClient.put(`/api/ambulance/${_id}`, { ...profileData })
+      .then((result) => {
+        dispatch(setAmbulance(result.data.data));
+        setIsEditing(false);
+      })
+      .catch((err) => console.log(err));
   };
 
-  const handleLogout = () => {
-    // Implement logout logic here
+  const handleLogout = async () => {
+    await ApiClient.get("/api/logout", { withCredentials: true })
+      .then((result) => {
+        console.log(result);
+        localStorage.removeItem("accessToken");
+        window.location.href = "/";
+      })
+      .catch((err) => console.log(err));
     console.log("Logging out...");
   };
 
